@@ -43,11 +43,6 @@ public class SecurityRequestFilter implements ContainerRequestFilter{
 				if(verified) {
 					email = jwtService.getClaimFromToken(token, "email");
 					String role = jwtService.getClaimFromToken(token, "role");
-					System.out.println(role);
-					System.out.println(role.equals("User"));
-					System.out.println(role=="User");
-					System.out.println(role.toLowerCase().trim().equals("User".toLowerCase().trim()));
-					System.out.println(role.replace('"', ' ').trim().equals("User".replace('"', ' ').trim()));
 					if(role.replace('"', ' ').trim().equals("User".replace('"', ' ').trim())) {
 						System.out.println("test encuentra al usuario y lo mete en context");
 						requestContext.setSecurityContext(new SecurityContextPlayer(email, requestContext));
